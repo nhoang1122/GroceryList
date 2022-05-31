@@ -1,4 +1,5 @@
 const message = document.querySelector("#message");
+const themeBtn = document.querySelectorAll('.theme');
 
 const addGroceryList = (evt) => {
     evt.preventDefault();
@@ -34,9 +35,22 @@ const crossOff = (evt) => {
     evt.target.classList.toggle('checked');
 
     if(evt.target.classList.contains("checked")) {
-        message.textContent = "ALREADY GOT IT!";
-    } else {
-        message.textContent = "GROCERY RE-ADDED!"
+        message.textContent = "GOT IT!";
     }
 };
 
+const selectTheme = (evt) => {
+    const theme = evt.target.textContent;
+    const allBtns = document.querySelectorAll('button');
+
+    document.querySelector('body').className = theme;
+    document.querySelector('main').className = theme;
+
+    for (let i = 0; i < allBtns.length; i++) {
+        allBtns[i].className = theme;
+    }
+}
+
+for (let i = 0; i < themeBtn.length; i++) {
+     themeBtn[i].addEventListener('click', selectTheme)
+}
